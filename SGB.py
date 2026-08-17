@@ -1,20 +1,16 @@
-# Master data structures
+# Using data structures such as:-
 student_database = {}  # Dictionary: { student_id: {name: str, scores: list} }
 all_subjects = set()   # Set to track unique subjects
 
 # Global configuration (Immutable scale)
 GRADE_CUTOFFS = (90, 80, 70, 60) # Tuples for fixed rules
 
+# Defining a variable which generates an id
 def generate_id(name):
     return name[0:3].upper() + "-2026"
-    """
-    TODO: Use string slicing and concatenation.
-    Take the first 3 letters of the name, turn them uppercase, 
-    and concatenate '-2026' to the end.
-    Example: "Alice" -> "ALI-2026"
-    """
     pass
 
+# Defining a variable that gives student a letter grade
 def calculate_letter_grade(average):
     if average >=90:
         return 'A'
@@ -24,12 +20,9 @@ def calculate_letter_grade(average):
         return 'C'
     else:
         return 'F'
-    """
-    TODO: Use Conditionals (if-elif-else) and the GRADE_CUTOFFS tuple
-    to return 'A', 'B', 'C', or 'F'.
-    """
     pass
 
+#The main variable by which we can add a student to our gradebook
 def add_student():
     print("\n--- Add New Student ---")
     name = input("Enter student's full name: ")
@@ -40,6 +33,8 @@ def add_student():
         subject = input("Enter subject name: ").strip()
         all_subjects.add(subject) # Adding to the unique set
         while True:
+        # Using try-except blocks in which we ask for a score, cast it to a float, and append to the scores list.
+        # If casting fails, it prints an error and asks for the score again.
             try:
                 marks=float(input(f"Enter marks for {subject}:"))
                 break
@@ -50,10 +45,6 @@ def add_student():
         another=input(f"Add another score for {name}? (y/n):").lower().strip()
         if another=='n':
             break
-        
-        # TODO: Implement Type Casting and Exception Handling (try-except)
-        # Ask for a score, cast it to a float, and append to the scores list.
-        # If casting fails, print an error and ask for the score again.
 
     # Save to dictionary
     student_database[student_id] = {
@@ -83,7 +74,6 @@ def view_report():
         letter_grade=calculate_letter_grade(average)
         print(f"ID: {student_id} | Name: {name} | Final Grade: {letter_grade} (Avg: {average})")
         
-    # TODO: Use a loop to iterate through student_database.
     # Calculate each student's average, call calculate_letter_grade(),
     # and print their record using a formatted f-string.
     
